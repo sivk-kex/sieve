@@ -35,8 +35,9 @@
 - SIEVE Stage 1 v1 stopped at its cross-product execution gate. The corrected
   v2 protocol also stopped at Trial 1 because Claude had no authenticated
   model session under its required `--bare` configuration. See
-  `docs/sieve-stage1-v2-result.md`. No more SIEVE agent runs, protocol
-  changes, or paper drafting without fresh explicit consent.
+  `docs/sieve-stage1-v2-result.md`. User gave fresh consent for one frozen v3
+  protocol and EAIT WIP drafting only; follow
+  `docs/sieve-stage1-v3-protocol.md` exactly.
 
 ## Working Rules
 
