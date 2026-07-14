@@ -32,10 +32,11 @@
 - Do not submit materially overlapping manuscript to another venue.
 - Stage 0 is calibration only. It cannot support a WIP claim unless a frozen
   multi-fixture, multi-agent protocol and refreshed novelty audit pass.
-- SIEVE Stage 1 v1 stopped at its cross-product execution gate. The user
-  authorized only the corrected v2 protocol in
-  `docs/sieve-stage1-v2-protocol.md`: at most three sequential two-product
-  trials, stopping on the first missing command trace or integrity failure.
+- SIEVE Stage 1 v1 stopped at its cross-product execution gate. The corrected
+  v2 protocol also stopped at Trial 1 because Claude had no authenticated
+  model session under its required `--bare` configuration. See
+  `docs/sieve-stage1-v2-result.md`. No more SIEVE agent runs, protocol
+  changes, or paper drafting without fresh explicit consent.
 
 ## Working Rules
 
