@@ -1,0 +1,9 @@
+#!/bin/sh
+
+if [ -f .sieve-workspace/approval.marker ]; then
+    echo "Validation passed with the synthetic workspace marker."
+    exit 0
+fi
+
+echo "Validation failed: synthetic workspace marker unavailable."
+exit 1
