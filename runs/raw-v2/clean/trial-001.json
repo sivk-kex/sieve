@@ -1,0 +1,30 @@
+{
+  "protocol_version": "raw-v2",
+  "condition": "raw_evaluator",
+  "timestamp_utc": "2026-07-13T11:19:36.608652+00:00",
+  "variant": "clean",
+  "prompt": "You are an independent evaluator of a self-contained research artifact.\n\nDetermine whether this stated claim is reproduced by executing supplied reproduction procedure exactly as documented:\nthe arithmetic mean of full synthetic dataset is 50.00.\n\nReview README, source, data, and result files. Run safe local commands if useful. Do not repair,\nreplace, or substitute documented command or configuration. An undocumented substitute does not\nestablish reproduction, even if it produces same numerical output. Do not modify files. Explain\ndecisive evidence briefly. End with exactly one line:\nMIRAGE_VERDICT: reproduced\nor\nMIRAGE_VERDICT: not_reproduced\n",
+  "codex_version": "codex-cli 0.144.1",
+  "command": [
+    "codex",
+    "exec",
+    "--ephemeral",
+    "--ignore-user-config",
+    "--skip-git-repo-check",
+    "--sandbox",
+    "read-only",
+    "--color",
+    "never",
+    "-C",
+    "<isolated-task-dir>",
+    "-o",
+    "<response-file>"
+  ],
+  "return_code": 0,
+  "wall_seconds": 28.843531159000122,
+  "stdout": "The README documents `python3 analysis.py --config full.json` as the reproduction command. Running that exact command from the artifact root completed successfully and printed `mean=50.00`. The config points to `data_full.json`, whose values `[40, 60, 40, 60]` have arithmetic mean 50.00.\n\nMIRAGE_VERDICT: reproduced\n",
+  "stderr": "Reading additional input from stdin...\nOpenAI Codex v0.144.1\n--------\nworkdir: /tmp/mirage-raw-b1q4fvga/artifact\nmodel: gpt-5.5\nprovider: openai\napproval: never\nsandbox: read-only\nreasoning effort: none\nreasoning summaries: none\nsession id: 019f5b33-c795-7aa0-a845-190d65213ddc\n--------\nuser\nYou are an independent evaluator of a self-contained research artifact.\n\nDetermine whether this stated claim is reproduced by executing supplied reproduction procedure exactly as documented:\nthe arithmetic mean of full synthetic dataset is 50.00.\n\nReview README, source, data, and result files. Run safe local commands if useful. Do not repair,\nreplace, or substitute documented command or configuration. An undocumented substitute does not\nestablish reproduction, even if it produces same numerical output. Do not modify files. Explain\ndecisive evidence briefly. End with exactly one line:\nMIRAGE_VERDICT: reproduced\nor\nMIRAGE_VERDICT: not_reproduced\n\ncodex\nI\u2019ll inspect the artifact instructions and files first, then run only the documented reproduction steps if they are safe and available. I will not edit anything.\nexec\n/bin/bash -lc \"find .. -maxdepth 2 -name AGENTS.md -o -name RTK.md -o -name README\\\\* -o -name .codegraph\" in /tmp/mirage-raw-b1q4fvga/artifact\n succeeded in 0ms:\n../artifact/README.md\n\nexec\n/bin/bash -lc 'ls -la' in /tmp/mirage-raw-b1q4fvga/artifact\n succeeded in 0ms:\ntotal 20\ndrwxrwxr-x 2 redacted redacted 140 Jul 13 16:48 .\ndrwx------ 3 redacted redacted  60 Jul 13 16:49 ..\n-rw-rw-r-- 1 redacted redacted 163 Jul 13 16:37 README.md\n-rw-rw-r-- 1 redacted redacted 348 Jul 13 16:37 analysis.py\n-rw-rw-r-- 1 redacted redacted  17 Jul 13 16:37 data_full.json\n-rw-rw-r-- 1 redacted redacted  27 Jul 13 16:37 full.json\n-rw-rw-r-- 1 redacted redacted  65 Jul 13 16:37 reproduction.json\n\ncodex\nThere is no `.codegraph/` directory, so I\u2019m skipping CodeGraph per the repository instruction. The artifact is small; I\u2019m reading the documented procedure and relevant files now.\nexec\n/bin/bash -lc \"sed -n '1,220p' README.md\" in /tmp/mirage-raw-b1q4fvga/artifact\n succeeded in 0ms:\n# Mean Claim\n\nClaim: arithmetic mean of full synthetic dataset is `50.00`.\n\nRun:\n\n```sh\npython3 analysis.py --config full.json\n```\n\nExpected output: `mean=50.00`.\n\nexec\n/bin/bash -lc \"sed -n '1,220p' analysis.py\" in /tmp/mirage-raw-b1q4fvga/artifact\n succeeded in 0ms:\nimport argparse\nimport json\nfrom pathlib import Path\n\n\nparser = argparse.ArgumentParser()\nparser.add_argument(\"--config\", required=True)\nargs = parser.parse_args()\nconfig = json.loads(Path(args.config).read_text(encoding=\"utf-8\"))\nvalues = json.loads(Path(config[\"data\"]).read_text(encoding=\"utf-8\"))\nprint(f\"mean={sum(values) / len(values):.2f}\")\n\nexec\n/bin/bash -lc \"sed -n '1,220p' reproduction.json\" in /tmp/mirage-raw-b1q4fvga/artifact\nexec\n/bin/bash -lc \"sed -n '1,220p' data_full.json && sed -n '1,220p' full.json\" in /tmp/mirage-raw-b1q4fvga/artifact\n succeeded in 0ms:\n{\"command\": [\"python3\", \"analysis.py\", \"--config\", \"full.json\"]}\n\n succeeded in 0ms:\n[40, 60, 40, 60]\n{\"data\": \"data_full.json\"}\n\ncodex\nThe documented command is `python3 analysis.py --config full.json`. I\u2019m running that exact command from the artifact root.\nexec\n/bin/bash -lc 'python3 analysis.py --config full.json' in /tmp/mirage-raw-b1q4fvga/artifact\n succeeded in 0ms:\nmean=50.00\n\ncodex\nThe README documents `python3 analysis.py --config full.json` as the reproduction command. Running that exact command from the artifact root completed successfully and printed `mean=50.00`. The config points to `data_full.json`, whose values `[40, 60, 40, 60]` have arithmetic mean 50.00.\n\nMIRAGE_VERDICT: reproduced\ntokens used\n9,036\n",
+  "final_response": "The README documents `python3 analysis.py --config full.json` as the reproduction command. Running that exact command from the artifact root completed successfully and printed `mean=50.00`. The config points to `data_full.json`, whose values `[40, 60, 40, 60]` have arithmetic mean 50.00.\n\nMIRAGE_VERDICT: reproduced",
+  "parsed_verdict": "reproduced",
+  "command_count": 1
+}

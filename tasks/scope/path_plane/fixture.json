@@ -1,0 +1,21 @@
+{
+  "id": "path-plane",
+  "repository": "repo",
+  "command": ["sh", "run-validation"],
+  "caller": {
+    "environment": {
+      "PATH": "{fixture}/caller-bin:{parent:PATH}"
+    }
+  },
+  "scope_card": {
+    "comparison": "divergent",
+    "differences": [
+      {
+        "kind": "executable-origin",
+        "command": "true",
+        "caller": "undeclared-external",
+        "agent": "system"
+      }
+    ]
+  }
+}

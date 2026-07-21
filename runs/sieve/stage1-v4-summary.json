@@ -1,0 +1,182 @@
+{
+  "protocol": "sieve-stage1-v4",
+  "trials_per_product": 3,
+  "source_records": [
+    "stage1-v4-trial1-claude-20260714T110451Z.json",
+    "stage1-v4-trial1-codex-20260714T110342Z.json",
+    "stage1-v4-trial2-claude-20260714T110646Z.json",
+    "stage1-v4-trial2-codex-20260714T110607Z.json",
+    "stage1-v4-trial3-claude-20260714T110803Z.json",
+    "stage1-v4-trial3-codex-20260714T110720Z.json"
+  ],
+  "rows": [
+    {
+      "fixture": "clean_control",
+      "products": {
+        "codex": {
+          "agent_exit_codes": [
+            0,
+            0,
+            0
+          ],
+          "readiness_counts": {
+            "ready": 3
+          },
+          "transfer_gaps": 0
+        },
+        "claude": {
+          "agent_exit_codes": [
+            0,
+            0,
+            0
+          ],
+          "readiness_counts": {
+            "ready": 3
+          },
+          "transfer_gaps": 0
+        }
+      },
+      "target_exit_code": 0
+    },
+    {
+      "fixture": "failure_control",
+      "products": {
+        "codex": {
+          "agent_exit_codes": [
+            1,
+            1,
+            1
+          ],
+          "readiness_counts": {
+            "not_ready": 3
+          },
+          "transfer_gaps": 0
+        },
+        "claude": {
+          "agent_exit_codes": [
+            1,
+            1,
+            1
+          ],
+          "readiness_counts": {
+            "not_ready": 3
+          },
+          "transfer_gaps": 0
+        }
+      },
+      "target_exit_code": 1
+    },
+    {
+      "fixture": "env_marker",
+      "products": {
+        "codex": {
+          "agent_exit_codes": [
+            0,
+            0,
+            0
+          ],
+          "readiness_counts": {
+            "ready": 3
+          },
+          "transfer_gaps": 3
+        },
+        "claude": {
+          "agent_exit_codes": [
+            0,
+            0,
+            0
+          ],
+          "readiness_counts": {
+            "not_ready": 3
+          },
+          "transfer_gaps": 3
+        }
+      },
+      "target_exit_code": 1
+    },
+    {
+      "fixture": "config_marker",
+      "products": {
+        "codex": {
+          "agent_exit_codes": [
+            0,
+            0,
+            0
+          ],
+          "readiness_counts": {
+            "ready": 3
+          },
+          "transfer_gaps": 3
+        },
+        "claude": {
+          "agent_exit_codes": [
+            0,
+            0,
+            0
+          ],
+          "readiness_counts": {
+            "not_ready": 3
+          },
+          "transfer_gaps": 3
+        }
+      },
+      "target_exit_code": 1
+    },
+    {
+      "fixture": "path_marker",
+      "products": {
+        "codex": {
+          "agent_exit_codes": [
+            127,
+            127,
+            127
+          ],
+          "readiness_counts": {
+            "not_ready": 3
+          },
+          "transfer_gaps": 0
+        },
+        "claude": {
+          "agent_exit_codes": [
+            0,
+            0,
+            0
+          ],
+          "readiness_counts": {
+            "not_ready": 3
+          },
+          "transfer_gaps": 3
+        }
+      },
+      "target_exit_code": 127
+    },
+    {
+      "fixture": "cwd_marker",
+      "products": {
+        "codex": {
+          "agent_exit_codes": [
+            0,
+            0,
+            0
+          ],
+          "readiness_counts": {
+            "ready": 3
+          },
+          "transfer_gaps": 3
+        },
+        "claude": {
+          "agent_exit_codes": [
+            0,
+            0,
+            0
+          ],
+          "readiness_counts": {
+            "not_ready": 3
+          },
+          "transfer_gaps": 3
+        }
+      },
+      "target_exit_code": 1
+    }
+  ]
+}

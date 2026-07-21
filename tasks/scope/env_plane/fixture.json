@@ -1,0 +1,21 @@
+{
+  "id": "env-plane",
+  "repository": "repo",
+  "command": ["sh", "run-validation"],
+  "caller": {
+    "environment": {
+      "RELEASE_BLOCKER": "present"
+    }
+  },
+  "scope_card": {
+    "comparison": "divergent",
+    "differences": [
+      {
+        "kind": "environment-presence",
+        "name": "RELEASE_BLOCKER",
+        "caller": "present",
+        "agent": "absent"
+      }
+    ]
+  }
+}

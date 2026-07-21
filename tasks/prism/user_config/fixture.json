@@ -1,0 +1,21 @@
+{
+  "id": "user-config",
+  "repository": "repo",
+  "command": ["sh", "run-validation"],
+  "states": {
+    "ambient": {
+      "environment": {
+        "HOME": "{fixture}/host-home"
+      },
+      "ambient_roots": {
+        "user-config": "host-home"
+      }
+    },
+    "clean": {
+      "environment": {
+        "HOME": "{fixture}/clean-home"
+      },
+      "ambient_roots": {}
+    }
+  }
+}

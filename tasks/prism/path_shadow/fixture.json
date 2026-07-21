@@ -1,0 +1,21 @@
+{
+  "id": "path-shadow",
+  "repository": "repo",
+  "command": ["sh", "run-validation"],
+  "states": {
+    "ambient": {
+      "environment": {
+        "PATH": "{fixture}/host-bin:{repository}/tools:{parent:PATH}"
+      },
+      "ambient_roots": {
+        "path": "host-bin"
+      }
+    },
+    "clean": {
+      "environment": {
+        "PATH": "{repository}/tools:{parent:PATH}"
+      },
+      "ambient_roots": {}
+    }
+  }
+}

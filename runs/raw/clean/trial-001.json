@@ -1,0 +1,30 @@
+{
+  "protocol_version": "raw-v1",
+  "condition": "raw_evaluator",
+  "timestamp_utc": "2026-07-13T11:11:38.857268+00:00",
+  "variant": "clean",
+  "prompt": "You are an independent evaluator of a self-contained research artifact.\n\nDetermine whether this stated claim is reproduced by evidence in current workspace:\nthe arithmetic mean of full synthetic dataset is 50.00.\n\nReview README, claim manifest, source, data, and result files. Run safe local commands if useful.\nDo not modify files. Explain decisive evidence briefly. End with exactly one line:\nMIRAGE_VERDICT: reproduced\nor\nMIRAGE_VERDICT: not_reproduced\n",
+  "codex_version": "codex-cli 0.144.1",
+  "command": [
+    "codex",
+    "exec",
+    "--ephemeral",
+    "--ignore-user-config",
+    "--skip-git-repo-check",
+    "--sandbox",
+    "read-only",
+    "--color",
+    "never",
+    "-C",
+    "<isolated-task-dir>",
+    "-o",
+    "<response-file>"
+  ],
+  "return_code": 1,
+  "wall_seconds": 0.06725284400090459,
+  "stdout": "",
+  "stderr": "WARNING: proceeding, even though we could not create PATH aliases: Read-only file system (os error 30)\nReading additional input from stdin...\nError: failed to initialize in-process app-server client: Read-only file system (os error 30)\n",
+  "final_response": "",
+  "parsed_verdict": "unparseable",
+  "command_count": 1
+}

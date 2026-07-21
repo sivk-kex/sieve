@@ -1,0 +1,2 @@
+mean=50.00
+status=reproduced

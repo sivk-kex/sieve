@@ -1,0 +1,71 @@
+{
+  "protocol_version": "raw-v3",
+  "receipt_source": "/home/redacted/Desktop/projects/mirage/runs/receipt/pilot.json",
+  "raw_source": "/home/redacted/Desktop/projects/mirage/runs/raw-v3",
+  "total_trials": 9,
+  "variants": {
+    "clean": {
+      "receipt_verdict": "reproduced",
+      "trials": 3,
+      "verdict_counts": {
+        "not_reproduced": 0,
+        "reproduced": 3,
+        "unparseable": 0
+      },
+      "outcomes": {
+        "matches_receipt": 3,
+        "receipt_disagreement_positive": 0,
+        "receipt_disagreement_negative": 0,
+        "unparseable": 0
+      },
+      "mean_wall_seconds": 24.684515195333613,
+      "source_records": [
+        "/home/redacted/Desktop/projects/mirage/runs/raw-v3/clean/trial-001.json",
+        "/home/redacted/Desktop/projects/mirage/runs/raw-v3/clean/trial-002.json",
+        "/home/redacted/Desktop/projects/mirage/runs/raw-v3/clean/trial-003.json"
+      ]
+    },
+    "configuration_substitution": {
+      "receipt_verdict": "not_reproduced",
+      "trials": 3,
+      "verdict_counts": {
+        "not_reproduced": 0,
+        "reproduced": 3,
+        "unparseable": 0
+      },
+      "outcomes": {
+        "matches_receipt": 0,
+        "receipt_disagreement_positive": 3,
+        "receipt_disagreement_negative": 0,
+        "unparseable": 0
+      },
+      "mean_wall_seconds": 32.21067741266719,
+      "source_records": [
+        "/home/redacted/Desktop/projects/mirage/runs/raw-v3/configuration_substitution/trial-001.json",
+        "/home/redacted/Desktop/projects/mirage/runs/raw-v3/configuration_substitution/trial-002.json",
+        "/home/redacted/Desktop/projects/mirage/runs/raw-v3/configuration_substitution/trial-003.json"
+      ]
+    },
+    "evidence_laundering": {
+      "receipt_verdict": "not_reproduced",
+      "trials": 3,
+      "verdict_counts": {
+        "not_reproduced": 3,
+        "reproduced": 0,
+        "unparseable": 0
+      },
+      "outcomes": {
+        "matches_receipt": 3,
+        "receipt_disagreement_positive": 0,
+        "receipt_disagreement_negative": 0,
+        "unparseable": 0
+      },
+      "mean_wall_seconds": 27.9132884786668,
+      "source_records": [
+        "/home/redacted/Desktop/projects/mirage/runs/raw-v3/evidence_laundering/trial-001.json",
+        "/home/redacted/Desktop/projects/mirage/runs/raw-v3/evidence_laundering/trial-002.json",
+        "/home/redacted/Desktop/projects/mirage/runs/raw-v3/evidence_laundering/trial-003.json"
+      ]
+    }
+  }
+}

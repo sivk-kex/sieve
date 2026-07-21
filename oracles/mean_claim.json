@@ -1,0 +1,10 @@
+{
+  "id": "mean_claim",
+  "command": ["python3", "analysis.py", "--config", "full.json"],
+  "expected_output": "mean=50.00",
+  "expected_hashes": {
+    "analysis.py": "b89bf031105b02429674484a4195a749f67879685f23555c8f7045c83035b3b0",
+    "full.json": "51e3e1fb10629181a2e3edb6bfc222d785c89e54d77b820c8160db44fc0c310e",
+    "data_full.json": "6d59a59e637a7e41722694d0c6a1064d513af7b9afaa28ebd674629b1d0b9e04"
+  }
+}
