@@ -274,7 +274,7 @@ def main() -> None:
         "--summary", type=Path, default=ROOT / "runs" / "sieve" / "stage1-v4-summary.json"
     )
     parser.add_argument(
-        "--table", type=Path, default=ROOT / "paper" / "sieve" / "results_table.tex"
+        "--table", type=Path, default=ROOT / "runs" / "sieve" / "stage1-v4-table.tex"
     )
     args = parser.parse_args()
     write_outputs(args.run_dir, args.summary, args.table)

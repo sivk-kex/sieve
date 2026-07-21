@@ -117,7 +117,8 @@ python3 -m unittest discover -s tests -q
 
 Expected baseline: 50 tests, with one environment-dependent skip.
 
-SIEVE summary generation:
+SIEVE summary generation writes JSON and generated LaTeX table outputs under
+`runs/sieve/`:
 
 ```sh
 python3 summarize_sieve_v4.py
