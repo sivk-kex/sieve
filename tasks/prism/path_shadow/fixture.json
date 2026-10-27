@@ -2,6 +2,9 @@
   "id": "path-shadow",
   "repository": "repo",
   "command": ["sh", "run-validation"],
+  "expected_ambient_inputs": [
+    {"origin": "path", "kind": "executable"}
+  ],
   "states": {
     "ambient": {
       "environment": {

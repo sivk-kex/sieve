@@ -6,6 +6,7 @@ import json
 import re
 import subprocess
 import tempfile
+import time
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Mapping
@@ -26,6 +27,7 @@ class Fixture:
     repository: Path
     command: tuple[str, ...]
     states: dict[str, dict[str, object]]
+    expected_ambient_inputs: tuple[dict[str, str], ...]
 
     def context_for(
         self, state: str, parent_environment: Mapping[str, str]
@@ -73,6 +75,7 @@ class FixtureRun:
     exit_code: int
     stdout: str
     stderr: str
+    wall_seconds: float
 
 
 @dataclass(frozen=True)
@@ -85,6 +88,7 @@ class TracedFixtureRun:
 def _run_command(
     command: tuple[str, ...], repository: Path, environment: Mapping[str, str]
 ) -> FixtureRun:
+    started = time.monotonic()
     try:
         completed = subprocess.run(
             command,
@@ -102,6 +106,7 @@ def _run_command(
             exit_code=completed.returncode,
             stdout=completed.stdout,
             stderr=completed.stderr,
+            wall_seconds=time.monotonic() - started,
         )
     except subprocess.TimeoutExpired as error:
         return FixtureRun(
@@ -109,6 +114,7 @@ def _run_command(
             exit_code=124,
             stdout=error.stdout or "",
             stderr=(error.stderr or "") + "\nPRISM fixture timeout",
+            wall_seconds=time.monotonic() - started,
         )
 
 
@@ -166,6 +172,7 @@ def load_fixture(path: Path) -> Fixture:
     repository_name = data.get("repository")
     command = data.get("command")
     states = data.get("states")
+    expected_ambient_inputs = data.get("expected_ambient_inputs", [])
     if not isinstance(repository_name, str) or not repository_name:
         raise FixtureError("repository must be a non-empty string")
     if not isinstance(command, list) or not command or not all(
@@ -174,6 +181,14 @@ def load_fixture(path: Path) -> Fixture:
         raise FixtureError("command must be a non-empty string list")
     if not isinstance(states, dict) or not states:
         raise FixtureError("states must be a non-empty object")
+    if not isinstance(expected_ambient_inputs, list) or not all(
+        isinstance(item, dict)
+        and set(item) == {"origin", "kind"}
+        and isinstance(item["origin"], str)
+        and isinstance(item["kind"], str)
+        for item in expected_ambient_inputs
+    ):
+        raise FixtureError("expected_ambient_inputs must list origin/kind objects")
 
     repository = (path / repository_name).resolve()
     try:
@@ -188,4 +203,8 @@ def load_fixture(path: Path) -> Fixture:
         repository=repository,
         command=tuple(command),
         states={name: value for name, value in states.items() if isinstance(name, str) and isinstance(value, dict)},
+        expected_ambient_inputs=tuple(
+            {"origin": item["origin"], "kind": item["kind"]}
+            for item in expected_ambient_inputs
+        ),
     )

@@ -1,0 +1,16 @@
+{
+  "id": "clean-control",
+  "repository": "repo",
+  "command": ["sh", "run-validation"],
+  "expected_ambient_inputs": [],
+  "states": {
+    "ambient": {
+      "environment": {},
+      "ambient_roots": {}
+    },
+    "clean": {
+      "environment": {},
+      "ambient_roots": {}
+    }
+  }
+}

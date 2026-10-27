@@ -28,6 +28,14 @@ class PrismFixtureTests(unittest.TestCase):
         self.assertEqual(environment["HOME"], str(fixture.path / "clean-home"))
         self.assertEqual(roots, {})
 
+    def test_fixture_declares_expected_ambient_inputs_for_receipt_scoring(self) -> None:
+        fixture = load_fixture(ROOT / "tasks" / "prism" / "path_shadow")
+
+        self.assertEqual(
+            fixture.expected_ambient_inputs,
+            ({"origin": "path", "kind": "executable"},),
+        )
+
     def test_fixtures_pass_only_with_intended_ambient_state(self) -> None:
         parent_environment = {"PATH": "/usr/bin"}
         for name in ("path_shadow", "user_config"):
@@ -38,6 +46,23 @@ class PrismFixtureTests(unittest.TestCase):
 
             self.assertEqual(ambient.exit_code, 0, name)
             self.assertNotEqual(clean.exit_code, 0, name)
+
+    def test_clean_control_passes_in_ambient_and_clean_states(self) -> None:
+        fixture = load_fixture(ROOT / "tasks" / "prism" / "clean_control")
+
+        ambient = run_fixture(fixture, "ambient", {"PATH": "/usr/bin"})
+        clean = run_fixture(fixture, "clean", {"PATH": "/usr/bin"})
+
+        self.assertEqual(ambient.exit_code, 0)
+        self.assertEqual(clean.exit_code, 0)
+        self.assertEqual(fixture.expected_ambient_inputs, ())
+
+    def test_fixture_run_records_nonnegative_wall_time(self) -> None:
+        fixture = load_fixture(ROOT / "tasks" / "prism" / "clean_control")
+
+        run = run_fixture(fixture, "ambient", {"PATH": "/usr/bin"})
+
+        self.assertGreaterEqual(run.wall_seconds, 0.0)
 
     @unittest.skipUnless(os.environ.get("PRISM_STRACE"), "PRISM_STRACE is required")
     def test_traced_ambient_passes_expose_declared_origin(self) -> None:

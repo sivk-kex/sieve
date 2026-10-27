@@ -2,6 +2,9 @@
   "id": "user-config",
   "repository": "repo",
   "command": ["sh", "run-validation"],
+  "expected_ambient_inputs": [
+    {"origin": "user-config", "kind": "read"}
+  ],
   "states": {
     "ambient": {
       "environment": {
